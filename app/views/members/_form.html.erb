@@ -1,0 +1,17 @@
+<%= simple_form_for(@member) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.simple_fields_for :circles do |member| %>
+      <%= render 'circle_fields', :f => member %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Add circle', f, :circles %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

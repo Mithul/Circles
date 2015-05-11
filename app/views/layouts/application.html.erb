@@ -5,16 +5,24 @@
     <title><%= content_for?(:title) ? yield(:title) : "Circles" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Circles" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%# javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
     <header>
       <%= render 'layouts/navigation' %>
     </header>
-    <main role="main">
+    <div role="main">
        <%= render 'layouts/messages' %>
-       <%= yield %>
-    </main>
+       <div id="<%= 'impress' if @impress_enable %>">
+       <br>
+       <br>
+       <br>
+       <br>
+        <%= yield %>
+       </div>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+       <script>impress().init();</script>
+    </div>
   </body>
 </html>

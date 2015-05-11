@@ -1,2 +1,10 @@
-<h3>Welcome</h3>
-<p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
+<div class="step" data-x="0" data-y="0" data-z="1000" data-scale="<%= @max_depth+5 %>">
+</div>
+<% @circles.each do |c| %>
+	<% scale = @max_depth - c[:depth] + 1 %>
+	<div class="step" data-x="<%= c[:point][0] %>" data-y="<%= c[:point][1] %>" data-z="<%= scale*1000 %>" data-scale="<%= scale %>">
+	        <h1><%= c[:unit].name %></h1>
+	        <span class="try"><%= c[:point].to_json %></span>
+	</div>
+<% end %>
+

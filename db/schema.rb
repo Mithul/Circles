@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511110242) do
+ActiveRecord::Schema.define(version: 20150511125920) do
+
+  create_table "circles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "circle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "circles", ["circle_id"], name: "index_circles_on_circle_id"
+
+  create_table "circles_members", force: :cascade do |t|
+    t.integer  "member_id"
+    t.integer  "circle_id"
+    t.string   "designation"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "circles_members", ["circle_id"], name: "index_circles_members_on_circle_id"
+  add_index "circles_members", ["member_id"], name: "index_circles_members_on_member_id"
+
+  create_table "members", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
