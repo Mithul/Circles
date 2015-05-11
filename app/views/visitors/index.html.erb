@@ -1,10 +1,11 @@
-<div class="step" data-x="0" data-y="0" data-z="1000" data-scale="<%= @max_depth+5 %>">
+<div class="step" data-x="0" data-y="0" data-z="20000" data-scale="25">
+CTF
 </div>
 <% @circles.each do |c| %>
-	<% scale = @max_depth - c[:depth] + 1 %>
-	<div class="step" data-x="<%= c[:point][0] %>" data-y="<%= c[:point][1] %>" data-z="<%= scale*1000 %>" data-scale="<%= scale %>">
-	        <h1><%= c[:unit].name %></h1>
-	        <span class="try"><%= c[:point].to_json %></span>
+	<% scale = 6 - (  c[:depth] ) -1 %>
+	<div class="step" data-x="<%= 2*c[:point][0] %>" data-y="<%= c[:point][1] %>" data-z="<%= scale*5000 %>" data-scale="<%= 2**scale %>">
+	        <h1 class="<%= c[:type] %>"><%= c[:unit].name %></h1>
+	        <span class="try"><%# c[:point].to_json %></span>
 	</div>
 <% end %>
 

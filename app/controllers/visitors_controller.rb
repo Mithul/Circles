@@ -10,13 +10,16 @@ class VisitorsController < ApplicationController
 		num = ctf.circles.count
 		diff = 360/num
 		i = 0
+		@dfs=[]
 		@depth_cirlces={}
 		@circles=[]
 		calc_points(ctf,[0,0,1],depth+1)
 		@depth_cirlces.each do |d,c|
-			puts c.to_json
+			puts d
+			@max_depth = d
 			@circles = @circles + c
 		end
+		@circles=@dfs
 		# circles.each_with_index do |c,i| 
 		# 	size = 0
 		# 	size = ctf.circles[i].circles.count if ctf.circles[i]
@@ -26,6 +29,8 @@ class VisitorsController < ApplicationController
 		# 	calc_points(c,point,depth+1)
 		# 	@circles.append(circle)
 		# end
+		puts '*'*100
+		puts @max_depth
 	end
 
 
@@ -34,7 +39,7 @@ class VisitorsController < ApplicationController
 		circles = circle.circles
 		members = circle.members
 		num = circles.count + members.count
-		radius=800
+		radius=1000 + num*700
 		if num!=0
 			@max_depth=depth
 			diff = 360/num
@@ -51,10 +56,10 @@ class VisitorsController < ApplicationController
 				point[0]=point[0]+centre[0]
 				point[1]=point[1]+centre[1]
 				circle = {unit: c,point: point, depth: depth, type: 'circle'}
-				calc_points(c,point,depth+1)
-				cc.append(circle)
 				i=i+1
-				# @circles.append(circle)
+				@dfs.append(circle)
+				cc.append(circle)
+				calc_points(c,point,depth+1)
 			end
 			members.each do |m|
 				point=[0,radius/depth]
@@ -64,12 +69,17 @@ class VisitorsController < ApplicationController
 				point[1]=point[1]+centre[1]
 				circle = {unit: m,point: point, depth: depth, type: 'member'}
 				# calc_points(c,point,depth+1)
+				@dfs.append(circle)
 				cc.append(circle)
+				puts circle
+				puts '*'*100
 				i=i+1
 			end
-
+			if members.count != 0
+				@max_depth = depth+1
+			end
 			@depth_cirlces[depth]=cc
-			puts @depth_cirlces.to_json
+			# puts @depth_cirlces.to_json
 		end
 	end
 
