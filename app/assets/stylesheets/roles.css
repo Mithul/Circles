@@ -1,0 +1,32 @@
+.modal h4{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.actual-h4{
+	font-size: 36px;
+	font-weight: bold;
+}
+
+ul.roles{
+	margin-left: 10px;
+	list-style: initial;
+}
+h3.role-title{
+	font-size: 16px;
+	font-weight: bold;
+}
+
+h4.role-title{
+	font-size: 30px;
+	font-weight: bold;
+}
+
+a.roles-full:link, a.roles-full:visited {
+    color: white;
+}
+
+#roles .row div{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}

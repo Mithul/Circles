@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :users
 
   get '/unit_role/:type/:id' => 'roles#list' ,:as => :unit_roles
+  get '/upload' => 'visitors#upload'
+  post '/upload' => 'visitors#parser', :as => :parser
 end

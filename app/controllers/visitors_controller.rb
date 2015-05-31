@@ -33,6 +33,42 @@ class VisitorsController < ApplicationController
 		puts @max_depth
 	end
 
+	def upload
+	end
+
+	def parser
+		require 'csv'
+		csv_text = File.read(params[:members][:file].tempfile)
+		csv = CSV.parse(csv_text, :headers => true)
+		members = []
+		ctf = Circle.find_by_name('CTF')
+		if !ctf
+			ctf = Circle.new
+			ctf.name = 'CTF'
+			ctf.save
+		end
+		csv.each do |row|
+			circle = Circle.find_by_name(row["TEAM"])
+			if !circle
+				circle = Circle.new
+				circle.name = row["TEAM"]
+			end
+			circle.save
+			ctf.circles << circle
+			member = Member.find_by_name(row["NAME"])
+			if !member
+				member = Member.new
+				member.name = row["NAME"]
+			end
+			if !member.circles.include? circle
+				member.circles << circle
+			end
+			member.save
+		  # members << member
+		end
+		ctf.save
+		render :text => members.to_json
+	end
 
 	private
 	def calc_points(circle,centre,depth)

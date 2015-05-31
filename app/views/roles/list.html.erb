@@ -13,4 +13,8 @@
   </div>
 </div>
 
-<%# link_to 'New Role', new_role_path %>
+<% if @member %>
+	<%= link_to 'Edit Roles', edit_member_path(@member) %>
+<% elsif @circle %>
+	<%= link_to 'Edit Roles', edit_circle_path(@circle) %>
+<% end %>

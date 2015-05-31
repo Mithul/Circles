@@ -9,13 +9,13 @@ class RolesController < ApplicationController
 
   def list
     if params[:type] == 'circle'
-      circle = Circle.find(params[:id])
-      @title ='Cicle ' + circle.name + "'s Roles"
-      @roles = circle.roles
+      @circle = Circle.find(params[:id])
+      @title ='Cicle ' + @circle.name + "'s Roles"
+      @roles = @circle.roles
     elsif params[:type] == 'member'
-      member = Member.find(params[:id])
-      @title ='Member ' + member.name + "'s Roles"
-      @roles = member.roles
+      @member = Member.find(params[:id])
+      @title ='Member ' + @member.name + "'s Roles"
+      @roles = @member.roles
     end
     if request.xhr?
       render :json => {'title'=> @title, 'roles' => @roles.pluck(:name,:description)}

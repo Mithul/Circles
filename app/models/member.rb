@@ -4,6 +4,14 @@ class Member < ActiveRecord::Base
 	has_many :roles
 	accepts_nested_attributes_for :roles, :allow_destroy => true
 
+	def circles_list
+		circles = []
+		self.circles.each do |c|
+			circles << c.name
+		end
+		circles.join(', ')
+	end
+
 
 	private
 	def check_circle(circle_attr)

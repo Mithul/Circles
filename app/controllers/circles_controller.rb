@@ -69,6 +69,6 @@ class CirclesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def circle_params
-      params.require(:circle).permit(:name, :circle_id)
+      params.require(:circle).permit(:name, :circle_id, members_attributes: [:name, :id ,:_destroy],roles_attributes: [:name, :description, :id ,:_destroy])
     end
 end

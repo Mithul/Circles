@@ -1,0 +1,23 @@
+// Place all the styles related to the circles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.circle{
+	color:rgb(99, 161, 99);
+}
+
+.member{
+	color:#6E9ABD;
+}
+.step{
+	opacity: 0.5;
+	width:100%;
+	transition:0.5s all;
+}
+.step.active{
+	opacity: 1;
+}
+.step:hover{
+	opacity: 1;
+}

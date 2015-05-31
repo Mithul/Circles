@@ -2,7 +2,7 @@
 
 <h1>Listing Circles</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -15,7 +15,7 @@
     <% @circles.each do |circle| %>
       <tr>
         <td><%= circle.name %></td>
-        <td><%= circle.circle %></td>
+        <td><%= circle.circle.name if circle.circle%></td>
         <td><%= link_to 'Show', circle %></td>
         <td><%= link_to 'Edit', edit_circle_path(circle) %></td>
         <td><%= link_to 'Destroy', circle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
