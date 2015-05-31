@@ -5,6 +5,7 @@
     <title><%= content_for?(:title) ? yield(:title) : "Circles" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Circles" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'impress-demo', media: 'all', 'data-turbolinks-track' => true if @impress_enable  %>
     <%# javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
@@ -14,7 +15,7 @@
     </header>
     <div role="main">
        <%= render 'layouts/messages' %>
-       <div id="<%= 'impress' if @impress_enable %>">
+       <div id="<%= 'impress' if @impress_enable %>" class="<%= 'container' unless @impress_enable %>">
        <br>
        <br>
        <br>
@@ -24,5 +25,29 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
        <script>impress().init();</script>
     </div>
+    <% if @impress_enable %>
+      <div class="perma-links">
+        <%= link_to 'Add member', new_member_path %>
+        <%= link_to 'Add circle', new_circle_path %>
+      </div>
+    <% end %>
+    <div class="modal fade" id="roles-modal" style="z-index:9999;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <ul class="roles">
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <a class="btn btn-primary roles-full">See Seperately</a>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
   </body>
 </html>

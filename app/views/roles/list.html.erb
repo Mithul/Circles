@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<h4 class="actual-h4"><%= @title %></h4>
+
+<div id="roles">
+  <div class="row">
+    <% @roles.each do |role| %>
+      <div class="col-sm-6">
+        <h4 class="role-title"><%= role.name %></h4>
+        <p><%= role.description %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%# link_to 'New Role', new_role_path %>

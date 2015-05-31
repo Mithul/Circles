@@ -4,7 +4,7 @@ CTF
 <% @circles.each do |c| %>
 	<% scale = 6 - (  c[:depth] ) -1 %>
 	<div class="step" data-x="<%= 2*c[:point][0] %>" data-y="<%= c[:point][1] %>" data-z="<%= scale*5000 %>" data-scale="<%= 2**scale %>">
-	        <h1 class="<%= c[:type] %>"><%= c[:unit].name %></h1>
+	        <h1 class="<%= c[:type] %> ajax-role"><%= link_to c[:unit].name,unit_roles_path(c[:type],c[:unit]) %></h1>
 	        <span class="try"><%# c[:point].to_json %></span>
 	</div>
 <% end %>

@@ -7,7 +7,13 @@
       <%= render 'circle_fields', :f => member %>
     <% end %>
     <div class="links">
-      <%= link_to_add_association 'Add circle', f, :circles %>
+      <%= link_to_add_association 'Add Circle', f, :circles %>
+    </div>
+    <%= f.simple_fields_for :roles do |member| %>
+      <%= render 'role_fields', :f => member %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Add Role', f, :roles %>
     </div>
   </div>
 
