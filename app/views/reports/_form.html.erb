@@ -1,0 +1,43 @@
+<%= simple_form_for(@report) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="auth-form">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.input :title, required: true %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.input :date, required: true ,  :as => :date_picker%>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :time, required: true ,  :as => :time_picker%>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :duration %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.input :venue, required: true %>
+        <%= f.input :initiator %>
+        <%= f.input :bucket, required: true, collection: @buckets, include_blank: false %>
+        <%= f.input :participants, required: true %>
+        <%= f.input :description, required: true %>
+        <%= f.input :conclusion, required: true %>
+        <%= f.input :author, as: :hidden, required: true %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.input :inter %>
+        <%= f.input :othbucket %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

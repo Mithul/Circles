@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :impress
 
   def impress
+  	
   	# @impress_enable = true
   end
 

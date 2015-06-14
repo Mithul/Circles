@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @report.title %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @report.date %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @report.duration %>
+</p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @report.venue %>
+</p>
+
+<p>
+  <strong>Initiator:</strong>
+  <%= @report.initiator %>
+</p>
+
+<p>
+  <strong>Bucket:</strong>
+  <%= @report.bucket %>
+</p>
+
+<p>
+  <strong>Participants:</strong>
+  <%= @report.participants %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @report.description %>
+</p>
+
+<p>
+  <strong>Conclusion:</strong>
+  <%= @report.conclusion %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @report.author %>
+</p>
+
+<p>
+  <strong>Inter:</strong>
+  <%= @report.inter %>
+</p>
+
+<p>
+  <strong>Othbucket:</strong>
+  <%= @report.othbucket %>
+</p>
+
+<%= link_to 'Edit', edit_report_path(@report) %> |
+<%= link_to 'Back', reports_path %>

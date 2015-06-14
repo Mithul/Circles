@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150614075656) do
+ActiveRecord::Schema.define(version: 20150614093929) do
 
   create_table "circles", force: :cascade do |t|
     t.string   "name"
@@ -38,6 +38,25 @@ ActiveRecord::Schema.define(version: 20150614075656) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string   "title"
+    t.date     "date"
+    t.string   "duration"
+    t.string   "venue"
+    t.string   "initiator"
+    t.string   "bucket"
+    t.string   "participants"
+    t.text     "description"
+    t.text     "conclusion"
+    t.string   "author"
+    t.boolean  "inter"
+    t.string   "othbucket"
+    t.time     "time"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "category"
   end
 
   create_table "roles", force: :cascade do |t|

@@ -1,0 +1,7 @@
+<% @reports.each do |report| %>
+  <%= report.title %>
+      <%= link_to 'Show', report_path(report.id, :format => :pdf) %>
+      <%= link_to 'Edit', edit_report_path(report) %>
+      <br  />
+<% end %>
+

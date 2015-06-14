@@ -1,0 +1,74 @@
+<%= wicked_pdf_stylesheet_link_tag 'application' %> 
+
+<div class="container pdf">
+  <h1  class="pdf-title"> <%= @report.title %> </h1>
+  <h2  class="pdf-category"> <%= @report.category %> </h2>
+
+  <div class="row">
+    <div class="pull-right">
+      <div class="col-md-4">
+        <%= @report.date.strftime('%e %b %Y').to_s + ' '+ @report.time.strftime('%H:%M').to_s %>
+      </div>
+
+      <div class=" col-md-4">
+        <strong>Duration:</strong>
+        <%= @report.duration %>
+      </div>  
+
+      <div class="col-md-8">
+        <strong>Venue:</strong>
+        <%= @report.venue %>
+      </div>  
+    </div>
+
+    <div class="col-md-8">
+      <strong>Bucket:</strong>
+      <%= @report.bucket %>
+    </div>  
+    <div class="col-md-8">
+      <strong>Initiator:</strong>
+      <%= @report.initiator %>
+    </div>  
+
+
+    <div class="col-md-12">
+      <strong>Participants:</strong>
+      <%= @report.participants %>
+    </div>  
+    <div class="col-md-12">
+      <strong>Other buckets:</strong>
+      <%= @report.othbucket %>
+    </div>  
+  </div>
+
+  <div class="row" style="min-height:800px">
+    <div class="col-md-12">
+      <h2>Description:</h2>
+      <%= @report.description %>
+    </div>  
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Conclusion:</h2>
+      <%= @report.conclusion %>
+    </div>  
+  </div>
+
+  <!-- <div class="row">
+    <div class="col-md-12">
+      <strong>Author:</strong>
+      <%= @report.author %>
+    </div>  
+  </div> -->
+
+  <!-- <div class="row">
+    <div class="col-md-12">
+      <strong>Inter:</strong>
+      <%= @report.inter %>
+    </div>  
+  </div> -->
+
+  
+</div>
+
