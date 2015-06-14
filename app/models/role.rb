@@ -9,4 +9,8 @@ class Role < ActiveRecord::Base
   	self.circle
   end
 
+  def circle_name
+  	self.circle.name
+  end
+
 end

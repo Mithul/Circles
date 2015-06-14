@@ -25,7 +25,7 @@ class CirclesController < ApplicationController
   # POST /circles.json
   def create
     @circle = Circle.new(circle_params)
-
+    @circle.category = "special-purpose"
     respond_to do |format|
       if @circle.save
         format.html { redirect_to @circle, notice: 'Circle was successfully created.' }

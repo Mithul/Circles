@@ -12,6 +12,10 @@ class Member < ActiveRecord::Base
 		circles.join(', ')
 	end
 
+	def main_circle
+		# return 'something'
+		self.circles.detect{|c| c.category == 'main'}
+	end
 
 	private
 	def check_circle(circle_attr)

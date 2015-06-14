@@ -6,10 +6,10 @@ class VisitorsController < ApplicationController
 		@max_depth = 1
 		depth = 0
 		ctf = Circle.find_by_name('CTF')
-		circles = ctf.circles
-		num = ctf.circles.count
-		diff = 360/num
-		i = 0
+		# circles = ctf.circles
+		# num = ctf.circles.count
+		# diff = 360/num
+		# i = 0
 		@dfs=[]
 		@depth_cirlces={}
 		@circles=[]
@@ -31,6 +31,39 @@ class VisitorsController < ApplicationController
 		# end
 		puts '*'*100
 		puts @max_depth
+	end
+
+	def special_circles
+		@impress_enable=true
+		@max_depth = 1
+		depth = 0
+		ctf = Circle.find_by_name('CTF')
+		# circles = ctf.circles
+		# num = ctf.circles.count
+		# diff = 360/num
+		# i = 0
+		@dfs=[]
+		@depth_cirlces={}
+		@circles=[]
+		calc_points(ctf,[0,0,1],depth+1,'special-purpose')
+		@depth_cirlces.each do |d,c|
+			puts d
+			@max_depth = d
+			@circles = @circles + c
+		end
+		@circles=@dfs
+		# circles.each_with_index do |c,i| 
+		# 	size = 0
+		# 	size = ctf.circles[i].circles.count if ctf.circles[i]
+		# 	point=[0,500,size+1]
+		# 	rotate(point,diff*i)
+		# 	circle = {circle: c,point: point ,depth: depth}
+		# 	calc_points(c,point,depth+1)
+		# 	@circles.append(circle)
+		# end
+		puts '*'*100
+		puts @max_depth
+		render 'index'
 	end
 
 	def upload
@@ -71,8 +104,8 @@ class VisitorsController < ApplicationController
 	end
 
 	private
-	def calc_points(circle,centre,depth)
-		circles = circle.circles
+	def calc_points(circle,centre,depth,type='main')
+		circles = circle.circles.where(:category => type)
 		members = circle.members
 		num = circles.count + members.count
 		radius=1000 + num*700

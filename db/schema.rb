@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150531111017) do
+ActiveRecord::Schema.define(version: 20150614075656) do
 
   create_table "circles", force: :cascade do |t|
     t.string   "name"
     t.integer  "circle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "category"
   end
 
   add_index "circles", ["circle_id"], name: "index_circles_on_circle_id"

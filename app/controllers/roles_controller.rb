@@ -15,10 +15,19 @@ class RolesController < ApplicationController
     elsif params[:type] == 'member'
       @member = Member.find(params[:id])
       @title ='Member ' + @member.name + "'s Roles"
-      @roles = @member.roles
+      roles = @member.roles
+      @roles = []
+      roles.each do |r|
+        @roles << {:name => r.name, :description => r.description, :circle => r.circle_name}
+      end
+      circle = @member.main_circle.name
+      circles = @member.circles.where.not(:name => circle).map{|c| c.name}
+      if circles == nil or circles.count==0
+        circles << "Not part of any other circle"
+      end
     end
     if request.xhr?
-      render :json => {'title'=> @title, 'roles' => @roles.pluck(:name,:description)}
+      render :json => {'title'=> @title, 'roles' => @roles, 'circle' => circle, 'circles' => circles}
     else
       # render :layout => false
     end

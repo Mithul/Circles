@@ -26,21 +26,31 @@
        <script>impress().init();</script>
     </div>
     <% if @impress_enable %>
+        <a class="top-right" href="#/CTF">Back to CTF</a>
       <div class="perma-links">
         <%= link_to 'Add member', new_member_path %> |
         <%= link_to 'Add circle', new_circle_path %>
       </div>
     <% end %>
-    <div class="modal fade" id="roles-modal" style="z-index:9999;">
-      <div class="modal-dialog">
+    <div class="modal fade bs-example-modal-lg" id="roles-modal" style="z-index:9999;">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="main-circle pull-right"></h4>
             <h4 class="modal-title">Modal title</h4>
           </div>
           <div class="modal-body">
-            <ul class="roles">
-            </ul>
+            <div class="row">
+              <div class="col-md-8">
+                <ul class="roles">
+                </ul>
+              </div>
+              <div class="col-md-4"> 
+                <!-- <h3>Other circles</h3> -->
+                <ul class="circles">
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
