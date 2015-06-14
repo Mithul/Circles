@@ -24,7 +24,7 @@
         <%= f.input :initiator %>
         <%= f.input :bucket, required: true, collection: @buckets, include_blank: false %>
         <%= f.input :participants, required: true %>
-        <%= f.input :description, required: true %>
+        <%= f.input :description, required: true , :as => :ckeditor%>
         <%= f.input :conclusion, required: true %>
         <%= f.input :author, as: :hidden, required: true %>
       </div>
