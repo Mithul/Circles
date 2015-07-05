@@ -1,6 +1,36 @@
+<!--<style>
+
+hr.style-two {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+</style>-->
+
 <h1>Editing report</h1>
 
-<%= render 'form' %>
+<div class="row">
+	<div class="col-sm-8">
+		<%= render 'form' %>
+	</div>
+	<div class="col-sm-4 well">
+		<h3>History</h3>
+			<%= 'No history yet' if !@report.versions or @report.versions.count==0 %>
+			<% @report.versions.each do |version| %>
+				<div class="row well">
+					<div class="col-sm-8">
+						<%= raw version.reify.description %>
+					</div>
+					<div class="col-sm-4">
+						<%= raw version.reify.created_at %>
+					</div>
+				</div>
+				<!-- <div class="row">
+					<hr class="style-two">
+				</div> -->
+			<% end %>
+	</div>
+</div>
 
 <%= link_to 'Show', @report %> |
 <%= link_to 'Back', reports_path %>

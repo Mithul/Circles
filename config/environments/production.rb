@@ -26,7 +26,7 @@ Rails.application.configure do
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
+  config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -76,4 +76,12 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+ENV["ADMIN_NAME"] = "admin"
+ ENV["ADMIN_EMAIL"] = "admin@g.c"
+ ENV["ADMIN_PASSWORD"]  = "password"
+ ENV["DOMAIN_NAME"] = "mithul.guindytimes.com"
+ ENV["SECRET_KEY_BASE"] = "sadasdfhafjbvyuv134h1j24v3214ug37289fgbsahkbvdaiv429vob"
+
+
 end

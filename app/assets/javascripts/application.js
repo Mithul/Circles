@@ -20,3 +20,15 @@
 //= require pickers
 //= require ckeditor/init
 //= require_tree .
+//= require_self
+
+$(document).ready(function() 
+    { 
+        $(".tablesorter").tablesorter(); 
+     
+	$(document).keyup(function(e) { 
+		if (e.keyCode == 27) {
+			window.location.href = "#/CTF"
+		}
+	});
+}); 

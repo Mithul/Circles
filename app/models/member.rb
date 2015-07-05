@@ -3,6 +3,9 @@ class Member < ActiveRecord::Base
 	accepts_nested_attributes_for :circles, :reject_if => :check_circle, :allow_destroy => true
 	has_many :roles
 	accepts_nested_attributes_for :roles, :allow_destroy => true
+	belongs_to :user
+	extend FriendlyId
+  	friendly_id :name,  use: [:slugged, :finders]
 
 	def circles_list
 		circles = []

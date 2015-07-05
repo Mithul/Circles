@@ -1,5 +1,8 @@
 class Circle < ActiveRecord::Base
   
+  extend FriendlyId
+  friendly_id :name,  use: [:slugged, :finders]
+
   belongs_to :circle
   has_many :circles
   has_and_belongs_to_many :members
