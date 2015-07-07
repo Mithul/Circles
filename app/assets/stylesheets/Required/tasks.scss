@@ -1,0 +1,59 @@
+// Place all the styles related to the tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.task{
+	background: #eee;
+	padding: 20px;
+	border-radius: 15px;
+	opacity: 0.9;
+	margin:10px;
+	transition: all 0.5s;
+}
+
+.task .description{
+	border-radius: 15px;
+	margin:10px;
+}
+
+.task:hover{
+	padding: 25px;
+	border-radius: 20px;
+	opacity: 1;
+}
+
+.task .task-title{
+	font-size: 24px;
+	font-weight: bold;
+}
+
+a:visited{
+	color:white;
+	 text-decoration: none;
+}
+
+
+.sticky-btn{
+	position: fixed;
+	color:white;
+	bottom:15px;
+	right:15px;
+	color:white;
+	display: block;
+	border-radius: 50%;
+	text-align: center;
+	line-height:50px;
+	font-size: 200%;
+	background: green;
+	height:50px;
+	width:50px;
+	transition: all 0.5s;
+}	
+
+.sticky-btn:hover{
+	bottom:20px;
+	color:white;
+	text-decoration: none;
+	background: green;
+}

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tasks</h1>
+
+<% @tasks.each do |task| %>
+  <div class="row">
+    <div class="task well">
+      <div class="row">
+        <div class="col-sm-8"><p class="task-title"><%= task.task_title.capitalize %></p></div>
+        <div class="col-sm-4"><p class="pull-right"><%= task.task_date %></p></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6"><%= task.task_category %></div>
+        <div class="col-sm-6"><p class="pull-right"><%= task.circle.name %></p></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12"><div class="description well"><%=raw(task.description[0..100]).html_safe %></div></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-10"></div>
+        <div class="col-sm-1"><p class="pull-right"><%= link_to 'Edit', edit_task_path(task) %></p></div>
+        <div class="col-sm-1"><p class="pull-right"><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %></p></div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<br>
+
+<%= link_to '+', new_task_path, class: 'sticky-btn hidden-xs' %>

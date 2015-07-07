@@ -21,11 +21,12 @@ class ReportsController < ApplicationController
   def new
     # @user = current_user.name
     @report = Report.new(:author => @user)
-    @buckets = ["Human Resources", "Industry Relations", "Marketing and Media", "Tech", "Ops", "Events"]
+    @buckets = Circle.where(:category => 'main').pluck(:name)
     respond_with(@report)
   end
 
   def edit
+    @buckets = Circle.where(:category => 'main').pluck(:name)
   end
 
   def create
