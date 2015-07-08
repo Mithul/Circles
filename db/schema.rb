@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707191210) do
+ActiveRecord::Schema.define(version: 20150708172200) do
 
   create_table "circles", force: :cascade do |t|
     t.string   "name"
@@ -70,6 +70,16 @@ ActiveRecord::Schema.define(version: 20150707191210) do
     t.datetime "updated_at", null: false
     t.string   "slug"
   end
+
+  create_table "members_roles", force: :cascade do |t|
+    t.integer  "member_id"
+    t.integer  "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "members_roles", ["member_id"], name: "index_members_roles_on_member_id"
+  add_index "members_roles", ["role_id"], name: "index_members_roles_on_role_id"
 
   create_table "reports", force: :cascade do |t|
     t.string   "title"

@@ -6,8 +6,8 @@
   <div class="row">
     <% @roles.each do |role| %>
       <div class="col-sm-6">
-        <h4 class="role-title"><%= role.name %></h4>
-        <p><%= role.description %></p>
+        <h4 class="role-title"><%= role[:name] + '(' + role[:circle] + ')' %></h4>
+        <p><%= role[:description] %></p>
       </div>
     <% end %>
   </div>

@@ -10,8 +10,15 @@ class RolesController < ApplicationController
   def list
     if params[:type] == 'circle'
       @circle = Circle.find(params[:id])
-      @title ='Cicle ' + @circle.name + "'s Roles"
-      @roles = @circle.roles
+      @title ='Circle ' + @circle.name + "'s Roles"
+      @roles = []
+      @circle.roles.each do |r|
+        member = r.members.first.name if r.members.count == 1
+        member = 'Unassigned' if r.members.count == 0
+        member = r.members.pluck(:name).join(', ') if r.members.count > 1
+        @roles << {:name => r.name, :description => r.description, :circle => member}
+      end
+      circle = @circle.circle.name
     elsif params[:type] == 'member'
       @member = Member.find(params[:id])
       @title ='Member ' + @member.name + "'s Roles"

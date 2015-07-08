@@ -6,7 +6,9 @@ class TasksController < ApplicationController
   def index
     tasks = Task.all
     reports = Report.all
-    @tasks = (reports+tasks).sort{|a,b| a.created_at <=> b.created_at }.reverse
+    roles = Role.all
+    circles = Circle.all
+    @tasks = (reports + tasks + roles + circles).sort{|a,b| a.created_at <=> b.created_at }.reverse
   end
 
   # GET /tasks/1

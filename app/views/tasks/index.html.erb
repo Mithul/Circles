@@ -6,12 +6,12 @@
   <div class="row">
     <div class="task well">
       <div class="row">
-        <div class="col-sm-8"><p class="task-title"><%= task.task_title.capitalize %></p></div>
+        <div class="col-sm-8"><p class="task-title"><%=raw task.task_title %></p></div>
         <div class="col-sm-4"><p class="pull-right"><%= task.task_date %></p></div>
       </div>
       <div class="row">
         <div class="col-sm-6"><%= task.task_category %></div>
-        <div class="col-sm-6"><p class="pull-right"><%= task.circle.name %></p></div>
+        <div class="col-sm-6"><p class="pull-right"><%= task.circle.name if task.circle %></p></div>
       </div>
       <div class="row">
         <div class="col-sm-12"><div class="description well"><%=raw(task.description[0..100]).html_safe %></div></div>
@@ -27,4 +27,14 @@
 
 <br>
 
-<%= link_to '+', new_task_path, class: 'sticky-btn hidden-xs' %>
+<div class="sticky-btn hidden-xs">
+  <%= link_to new_task_path do %>
+    <i class='fa fa-check-square-o' title="New Task"></i>
+  <% end %>
+  <%= link_to new_role_path do %>
+    <i class='fa fa-user' title="New Role"></i>
+  <% end %>
+  <%= link_to new_circle_path do %>
+    <i class='fa fa-circle-thin' title="New Circle"></i>
+  <% end %>
+</div>

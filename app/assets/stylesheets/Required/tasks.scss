@@ -28,32 +28,40 @@
 	font-weight: bold;
 }
 
-a:visited{
-	color:white;
+.sticky-btn a:visited{
+	 background: #5cb85c;
+	 color:white;
 	 text-decoration: none;
 }
 
-
-.sticky-btn{
-	position: fixed;
+.sticky-btn a{
+	background: #5cb85c;
 	color:white;
+}
+
+.sticky-btn > a{ 
+	color:white;
+	cursor: pointer;
+	position: fixed;
 	bottom:15px;
 	right:15px;
-	color:white;
 	display: block;
 	border-radius: 50%;
 	text-align: center;
 	line-height:50px;
-	font-size: 200%;
-	background: green;
+	font-size: 110%;
+	background: #5cb85c;
 	height:50px;
 	width:50px;
 	transition: all 0.5s;
 }	
 
 .sticky-btn:hover{
-	bottom:20px;
+	bottom: 20px;
+}
+
+.sticky-btn a:hover{
 	color:white;
 	text-decoration: none;
-	background: green;
+	background: #5cb85c;
 }

@@ -15,6 +15,31 @@ class Circle < ActiveRecord::Base
   	self.circles.where(:category => 'main')
   end
 
+  def task_title
+    'Circle "'+self.name+'" was created'
+  end
+
+  def task_date
+    self.created_at 
+  end
+
+  def task_category
+    'Circle' 
+  end
+
+  def description
+    'Circle was created with ' + member_names + 'member(s) and ' + circle_names + ' circle(s) under it.'
+  end
+
+  def member_names
+    return self.members.pluck(:name).join(', ')
+    ' 0' if self.members.count == 0
+  end
+
+  def circle_names
+    return self.circles.pluck(:name).join(', ')
+    ' 0' if self.circles.count == 0
+  end
 
   private
 	def check_member(member_attr)
