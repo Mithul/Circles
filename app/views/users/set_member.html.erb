@@ -1,0 +1,8 @@
+<h1>Set Member</h1>
+<h3>Who are you ?</h3>
+
+<%= form_for :users , url: assign_member_path do |f| %>
+	<%= f.select :member, @members , class: 'form-control' %><br>
+	<p>If your name is not present in the list, then it has been taken by someone else or you have not yet been added to the structure.</p>
+	<%= f.submit :submit, class: 'btn btn-success' %>
+<% end %>

@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   get '/upload' => 'visitors#upload'
   post '/upload' => 'visitors#parser', :as => :parser
   get '/special-circles' => 'visitors#special_circles', :as => :special_circles
+  get '/set-member' => 'users#set_member', :as => :set_member
+  post '/set-member' => 'users#assign_member', :as => :assign_member
 end

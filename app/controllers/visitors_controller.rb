@@ -106,7 +106,7 @@ class VisitorsController < ApplicationController
 	private
 	def calc_points(circle,centre,depth,type='main')
 		circles = circle.circles.where(:category => type)
-		members = circle.members
+		members = circle.members.where(:category => 'kore')
 		num = circles.count + members.count
 		radius=1000 + num*700
 		if num!=0

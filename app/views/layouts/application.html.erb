@@ -14,12 +14,12 @@
       <%= render 'layouts/navigation' %>
     </header>
     <div role="main">
-       <%= render 'layouts/messages' %>
        <div id="<%= 'impress' if @impress_enable %>" class="<%= 'container' unless @impress_enable %>">
        <br>
        <br>
        <br>
        <br>
+       <%= render 'layouts/messages' %>
         <%= yield %>
        </div>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>

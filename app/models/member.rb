@@ -1,4 +1,5 @@
 class Member < ActiveRecord::Base
+  	enum category: [:kore, :junior,:user]
 	has_and_belongs_to_many :circles
 	accepts_nested_attributes_for :circles, :reject_if => :check_circle, :allow_destroy => true
 	has_many :roles
@@ -6,6 +7,11 @@ class Member < ActiveRecord::Base
 	belongs_to :user
 	extend FriendlyId
   	friendly_id :name,  use: [:slugged, :finders]
+  	after_initialize :set_default_role, :if => :new_record?
+
+	  def set_default_role
+	    self.role ||= :user
+	  end
 
 	def circles_list
 		circles = []

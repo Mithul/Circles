@@ -18,8 +18,12 @@ class Report < ActiveRecord::Base
   	end
 
   	def task_date
-		d = self.date
-		t = self.time
-		dt = DateTime.new(d.year, d.month, d.day, t.hour, t.min, t.sec, t.zone)
+  		d = self.date
+  		t = self.time
+      if d and t
+  		  return dt = DateTime.new(d.year, d.month, d.day, t.hour, t.min, t.sec, t.zone)
+      else
+        return 'Unknown'
+      end
   	end
 end
