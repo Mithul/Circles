@@ -1,6 +1,8 @@
 class Role < ActiveRecord::Base
   belongs_to :circle
   has_and_belongs_to_many :members
+  has_many :comments, as: :post
+  
 
   def parent
   	if self.members

@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :circle
+  has_many :comments, as: :post
 
   def task_date
   	self.created_at

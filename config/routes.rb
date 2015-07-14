@@ -1,14 +1,25 @@
 Rails.application.routes.draw do
-  resources :tasks
+
+  resources :tasks do
+    resources :comments
+  end
 
   mount Ckeditor::Engine => '/ckeditor'
-  resources :reports
+  resources :reports do
+    resources :comments
+  end
 
-  resources :roles
+  resources :roles do
+    resources :comments
+  end
 
-  resources :members
+  resources :members do
+    resources :comments
+  end
 
-  resources :circles
+  resources :circles do
+    resources :comments
+  end
 
   mount Upmin::Engine => '/admin'
   root to: 'visitors#index'

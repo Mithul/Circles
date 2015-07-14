@@ -1,6 +1,8 @@
 class Report < ActiveRecord::Base
 	has_paper_trail
 	belongs_to :user
+  has_many :comments, as: :post
+  
 	extend FriendlyId
   	friendly_id :title,  use: [:slugged, :finders]
 

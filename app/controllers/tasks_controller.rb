@@ -10,6 +10,7 @@ class TasksController < ApplicationController
     roles = Role.all
     circles = Circle.all
     @tasks = (reports + tasks + roles + circles).sort{|a,b| a.created_at <=> b.created_at }.reverse
+    
   end
 
   # GET /tasks/1

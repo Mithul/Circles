@@ -7,6 +7,8 @@ class Circle < ActiveRecord::Base
   has_many :circles
   has_and_belongs_to_many :members
   has_many :roles
+  has_many :comments, as: :post
+  
   accepts_nested_attributes_for :roles, :allow_destroy => true
   accepts_nested_attributes_for :members, :reject_if => :check_member, :allow_destroy => true
 

@@ -21,6 +21,11 @@
         <div class="col-sm-1"><p class="pull-right"><%= link_to 'Edit', edit_task_path(task) %></p></div>
         <div class="col-sm-1"><p class="pull-right"><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %></p></div>
       </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= render :partial => 'task_comments', :locals => {:post => task } %>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>

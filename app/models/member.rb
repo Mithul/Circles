@@ -5,6 +5,8 @@ class Member < ActiveRecord::Base
 	has_many :roles
 	accepts_nested_attributes_for :roles, :allow_destroy => true
 	belongs_to :user
+  	has_many :comments, as: :post
+
 	extend FriendlyId
   	friendly_id :name,  use: [:slugged, :finders]
   	after_initialize :set_default_role, :if => :new_record?
