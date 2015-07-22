@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :checklist_items
+
+  resources :checklists
+
   resources :tasks do
     resources :comments
   end

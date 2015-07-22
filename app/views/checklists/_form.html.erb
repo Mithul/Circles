@@ -1,0 +1,19 @@
+<%= simple_form_for(@checklist) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.association :circle %>
+    <%= f.association :user %>
+    <%= f.simple_fields_for :checklist_items do |item| %>
+      <%= render 'checklist_item_fields', :f => item %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Add item', f, :checklist_items %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

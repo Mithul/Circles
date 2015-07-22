@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @checklist.title %>
+</p>
+
+<p>
+  <strong>Circle:</strong>
+  <%= @checklist.circle %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @checklist.user %>
+</p>
+
+<%= link_to 'Edit', edit_checklist_path(@checklist) %> |
+<%= link_to 'Back', checklists_path %>
