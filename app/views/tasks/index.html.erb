@@ -6,23 +6,19 @@
   <div class="row">
     <div class="task well">
       <div class="row">
-        <div class="col-sm-8"><p class="task-title"><%=raw task.task_title %></p></div>
-        <div class="col-sm-4"><p class="pull-right"><%= task.task_date %></p></div>
+        <div class="col-sm-10"><p class="task-title"><%=raw task.task_title %></p></div>
+        <div class="col-sm-1"><p class="pull-right"><%= link_to 'Edit', edit_task_path(task) %></p></div>
+        <div class="col-sm-1"><p class="pull-right"><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %></p></div>
       </div>
       <div class="row">
         <div class="col-sm-6"><%= task.task_category %></div>
-        <div class="col-sm-6"><p class="pull-right"><%= task.circle.name if task.circle %></p></div>
+        <div class="col-sm-6"><p class="pull-right"><%= task.task_date %> by <%= link_to task.circle.name, task.circle if task.circle %></p></div>
       </div>
       <div class="row">
         <div class="col-sm-12"><div class="description well"><%=raw(task.description[0..100]).html_safe %></div></div>
       </div>
       <div class="row">
-        <div class="col-sm-10"></div>
-        <div class="col-sm-1"><p class="pull-right"><%= link_to 'Edit', edit_task_path(task) %></p></div>
-        <div class="col-sm-1"><p class="pull-right"><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %></p></div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-10 comments">
           <%= render :partial => 'task_comments', :locals => {:post => task } %>
         </div>
       </div>
