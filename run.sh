@@ -17,4 +17,3 @@ cp $icons public/assets/ckeditor/skins/moono
 cp $config public/assets/ckeditor/config.js
 cp $styles public/assets/ckeditor/styles.js
 cp $en public/assets/ckeditor/lang/en.js
-

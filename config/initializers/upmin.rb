@@ -23,3 +23,8 @@ module AdminOnly
 end
 
 Upmin::ApplicationController.send :include, AdminOnly
+
+Upmin.configure do |config|
+  # Configurations go here - e.g.: 
+  config.models = [:user, :circle, :member, :role, :report, :task, :checklist]
+end
