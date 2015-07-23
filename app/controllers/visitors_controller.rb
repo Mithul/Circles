@@ -2,6 +2,9 @@ class VisitorsController < ApplicationController
 	include ApplicationHelper
 
 	def index
+		if params[:junior]=="true"
+			category='junior'
+		end
 		@impress_enable=true
 		@max_depth = 1
 		depth = 0
@@ -13,7 +16,7 @@ class VisitorsController < ApplicationController
 		@dfs=[]
 		@depth_cirlces={}
 		@circles=[]
-		calc_points(ctf,[0,0,1],depth+1)
+		calc_points(ctf,[0,0,1],depth+1,'main',category)
 		@depth_cirlces.each do |d,c|
 			puts d
 			@max_depth = d
@@ -34,6 +37,11 @@ class VisitorsController < ApplicationController
 	end
 
 	def special_circles
+		puts params.to_yaml
+		if params[:junior]=="true"
+			puts 'JUNNIOR'
+			category='junior'
+		end
 		@impress_enable=true
 		@max_depth = 1
 		depth = 0
@@ -45,7 +53,7 @@ class VisitorsController < ApplicationController
 		@dfs=[]
 		@depth_cirlces={}
 		@circles=[]
-		calc_points(ctf,[0,0,1],depth+1,'special-purpose')
+		calc_points(ctf,[0,0,1],depth+1,'special-purpose',category)
 		@depth_cirlces.each do |d,c|
 			puts d
 			@max_depth = d
@@ -104,9 +112,13 @@ class VisitorsController < ApplicationController
 	end
 
 	private
-	def calc_points(circle,centre,depth,type='main')
+	def calc_points(circle,centre,depth,type='main',category='kore')
+		puts type,category	
+		if category==nil
+			category='kore'
+		end
 		circles = circle.circles.where(:category => type)
-		members = circle.members.where(:category => 'kore')
+		members = circle.members.where(:category => Member.categories[category])
 		num = circles.count + members.count
 		radius=1000 + num*700
 		if num!=0
@@ -128,7 +140,7 @@ class VisitorsController < ApplicationController
 				i=i+1
 				@dfs.append(circle)
 				cc.append(circle)
-				calc_points(c,point,depth+1)
+				calc_points(c,point,depth+1,type,category)
 			end
 			members.each do |m|
 				point=[0,radius/depth]
@@ -136,7 +148,7 @@ class VisitorsController < ApplicationController
 				# puts point.to_json
 				point[0]=point[0]+centre[0]
 				point[1]=point[1]+centre[1]
-				circle = {unit: m,point: point, depth: depth, type: 'member'}
+				circle = {unit: m,point: point, depth: depth, type: 'member', category: m.category}
 				# calc_points(c,point,depth+1)
 				@dfs.append(circle)
 				cc.append(circle)

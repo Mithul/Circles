@@ -22,9 +22,37 @@
 //= require_tree .
 //= require_self
 
+        var $_GET = {};
+var junior_shown = false;
 $(document).ready(function() 
     { 
+		document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+		    function decode(s) {
+		        return decodeURIComponent(s.split("+").join(" "));
+		    }
+
+		    $_GET[decode(arguments[1])] = decode(arguments[2]);
+		});
         $(".tablesorter").tablesorter(); 
+        $("#junior_toggle").click(function(){
+        	alert('Hi');
+        	// if(junior_shown){
+        	// 	$('.step.kore').show();
+	        // 	$('.step.junior').hide();
+	        // 	junior_shown = false;
+	        // }else{
+	        // 	$('.step.kore').hide();
+	        // 	$('.step.junior').show();
+	        // 	junior_shown = true;
+	        // }
+			if($_GET["junior"]=="true")
+				window.location = "?junior=false"
+			else
+				window.location = "?junior=true"
+        });
+
+
+
      
 	$(document).keyup(function(e) { 
 		if (e.keyCode == 27) {

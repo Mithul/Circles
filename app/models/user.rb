@@ -14,6 +14,18 @@ class User < ActiveRecord::Base
     self.member.category
   end
 
+  def authority? object
+    if !(self.role == :admin or self.role == 'admin')
+      if object.class.to_s == 'Comment'
+        return object.user == self
+      else
+        return (self.member.circles.include?(object.circle) and self.member.category==:kore)
+      end
+    else
+      return true
+    end
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
