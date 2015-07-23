@@ -6,7 +6,7 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Circles" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= stylesheet_link_tag 'impress-demo', media: 'all', 'data-turbolinks-track' => true if @impress_enable  %>
-    <%# javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -22,7 +22,7 @@
        <%= render 'layouts/messages' %>
         <%= yield %>
        </div>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'impress', 'data-turbolinks-track' => true %>
        <script>impress().init();</script>
     </div>
     <% if @impress_enable %>
