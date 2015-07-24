@@ -19,10 +19,10 @@
 //= require bootstrap-datetimepicker
 //= require pickers
 //= require ckeditor/init
-//= require_tree .
 //= require_self
+//= require_tree .
 
-        var $_GET = {};
+var $_GET = {};
 var junior_shown = false;
 $(document).ready(function() 
     { 
@@ -35,7 +35,7 @@ $(document).ready(function()
 		});
         $(".tablesorter").tablesorter(); 
         $("#junior_toggle").click(function(){
-        	alert('Hi');
+        	// alert('Hi');
         	// if(junior_shown){
         	// 	$('.step.kore').show();
 	        // 	$('.step.junior').hide();

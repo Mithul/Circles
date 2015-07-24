@@ -21,6 +21,7 @@
 
 // You are one of those who like to know how thing work inside?
 // Let me show you the cogs that make impress.js run...
+$(document).ready(function() {
 (function ( document, window ) {
     'use strict';
 
@@ -798,3 +799,4 @@
 //
 // I've learnt a lot when building impress.js and I hope this code and comments
 // will help somebody learn at least some part of it.
+});

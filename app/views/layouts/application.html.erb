@@ -22,8 +22,7 @@
        <%= render 'layouts/messages' %>
         <%= yield %>
        </div>
-        <%= javascript_include_tag 'impress', 'data-turbolinks-track' => true %>
-       <script>impress().init();</script>
+       <script>$(document).ready(function(){impress().init();});</script>
     </div>
     <% if @impress_enable %>
         <a class="top-right" href="#/CTF">Back to CTF</a>
