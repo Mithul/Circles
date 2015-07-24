@@ -1,5 +1,11 @@
 class VisitorsController < ApplicationController
 	include ApplicationHelper
+  	before_filter :authenticate_user!, only: [:reveal]
+
+	def reveal
+		slide = params[:slide]
+		render slide, :layout => false
+	end
 
 	def index
 		if params[:junior]=="true"

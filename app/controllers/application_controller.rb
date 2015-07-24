@@ -10,11 +10,11 @@ class ApplicationController < ActionController::Base
   end
 
   def check_user_member
-	if current_user and current_user.member == nil and 
-		!(params[:controller] == 'devise/sessions' or params[:controller] == 'devise/registrations') and 
-			!(params[:controller] == 'users' and (params[:action]=='set_member' or params[:action]=='assign_member'))
-		redirect_to set_member_path
-	end  	
+  	if current_user and current_user.member == nil and 
+  		!(params[:controller] == 'devise/sessions' or params[:controller] == 'devise/registrations') and 
+  			!(params[:controller] == 'users' and (params[:action]=='set_member' or params[:action]=='assign_member'))
+  		redirect_to set_member_path
+  	end  	
   end
 
 end

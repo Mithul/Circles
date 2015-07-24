@@ -20,7 +20,7 @@
 //= require pickers
 //= require ckeditor/init
 //= require_self
-//= require_tree .
+//= require_tree ./required
 
 var $_GET = {};
 var junior_shown = false;

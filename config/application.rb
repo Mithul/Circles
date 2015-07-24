@@ -25,6 +25,13 @@ module Circles
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
     config.assets.precompile += Ckeditor.assets
     config.assets.initialize_on_precompile = true
+    config.assets.precompile += %w( impress.js )
+    config.assets.precompile += %w( zoom.js )
+    config.assets.precompile += %w( reveal.css )
+    config.assets.precompile += %w( theme/black.css )
+    config.assets.precompile += %w( notes.js )
+    config.assets.precompile += %w( reveal.js )
+    config.assets.precompile += %w( head.min.js )
     # config.assets.precompile += %w( impress.js )
   end
 end

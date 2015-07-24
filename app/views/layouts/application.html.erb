@@ -7,6 +7,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= stylesheet_link_tag 'impress-demo', media: 'all', 'data-turbolinks-track' => true if @impress_enable  %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'impress', 'data-turbolinks-track' => true if @impress_enable  %>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -22,7 +23,6 @@
        <%= render 'layouts/messages' %>
         <%= yield %>
        </div>
-       <script>$(document).ready(function(){impress().init();});</script>
     </div>
     <% if @impress_enable %>
         <a class="top-right" href="#/CTF">Back to CTF</a>
