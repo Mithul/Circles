@@ -14,6 +14,7 @@ mkdir public/assets/ckeditor/lang
 cp $editor public/assets/ckeditor/skins/moono
 cp $contents public/assets/ckeditor/
 cp $icons public/assets/ckeditor/skins/moono
+cp $icons public/assets/ckeditor/plugins
 cp $config public/assets/ckeditor/config.js
 cp $styles public/assets/ckeditor/styles.js
 cp $en public/assets/ckeditor/lang/en.js
