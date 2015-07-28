@@ -38,7 +38,7 @@ gem "cocoon"
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
 gem 'wicked_pdf'
-gem 'ckeditor'
+gem 'ckeditor', '~> 4.1.0'
 gem 'paperclip'
 gem 'paper_trail'
 gem 'friendly_id', '~> 5.1.0'

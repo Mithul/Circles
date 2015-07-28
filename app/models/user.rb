@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   end
 
   def member_role
-    self.member.category
+    self.member.category if self.member
   end
 
   def authority? object
