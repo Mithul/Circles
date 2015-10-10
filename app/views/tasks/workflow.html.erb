@@ -1,0 +1,60 @@
+<h1>Workflow</h1>
+<div id="gantt"></div>
+<script type="text/javascript">
+	
+		$(function() {
+
+			"use strict";
+
+			$("#gantt").gantt({
+				source: "data.json",
+				navigate: "scroll",
+				minScale: "hours",
+				maxScale: "months",
+				scale: "days",
+				itemsPerPage: 10,
+				onItemClick: function(data) {
+					$.ajax({
+					  url: data.url,
+					}).done(function(data) {
+						var modal = $('#roles-modal');
+						modal.modal('show');
+						modal.find('.modal-title').html('');
+						modal.find('.modal-footer').html('');
+						var container = modal.find('.modal-body');
+						container.html(data);
+					});
+				},
+				onAddClick: function(dt, rowId) {
+					// alert("Empty space clicked - add an item!");
+					$.ajax({
+					  url: '/tasks/new',
+					}).done(function(data) {
+						var modal = $('#roles-modal');
+						modal.modal('show');
+						modal.find('.modal-title').html('');
+						modal.find('.modal-footer').html('');
+						var container = modal.find('.modal-body');
+						container.html(data);
+						$("#task_task_id").val(rowId);
+						$('.datetimepicker').datetimepicker();
+						for (instance in CKEDITOR.instances){
+					        CKEDITOR.instances[instance].updateElement();
+					      }
+					});
+					console.log(dt, rowId);
+
+				},
+				onRender: function() {
+					if (window.console && typeof console.log === "function") {
+						console.log("chart rendered");
+					}
+				}
+			});
+
+
+			prettyPrint();
+
+		});
+  
+</script>

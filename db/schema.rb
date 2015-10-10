@@ -11,19 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150801061436) do
+ActiveRecord::Schema.define(version: 20151010124428) do
 
   create_table "checklist_items", force: :cascade do |t|
     t.string   "title"
     t.boolean  "checked"
+    t.datetime "deadline"
     t.integer  "checklist_id"
+    t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "user_id"
-    t.datetime "deadline"
   end
 
   add_index "checklist_items", ["checklist_id"], name: "index_checklist_items_on_checklist_id"
+  add_index "checklist_items", ["user_id"], name: "index_checklist_items_on_user_id"
 
   create_table "checklists", force: :cascade do |t|
     t.string   "title"
@@ -131,9 +132,9 @@ ActiveRecord::Schema.define(version: 20150801061436) do
     t.boolean  "inter"
     t.string   "othbucket"
     t.time     "time"
+    t.time     "category"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.string   "category"
     t.string   "slug"
     t.integer  "user_id"
   end
@@ -152,16 +153,8 @@ ActiveRecord::Schema.define(version: 20150801061436) do
   add_index "roles", ["circle_id"], name: "index_roles_on_circle_id"
   add_index "roles", ["member_id"], name: "index_roles_on_member_id"
 
-  create_table "tasks", force: :cascade do |t|
-    t.string   "title"
-    t.string   "category"
-    t.text     "description"
-    t.integer  "circle_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "tasks", ["circle_id"], name: "index_tasks_on_circle_id"
+# Could not dump table "tasks" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

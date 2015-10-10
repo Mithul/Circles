@@ -37,4 +37,6 @@ Rails.application.routes.draw do
   get '/set-member' => 'users#set_member', :as => :set_member
   post '/set-member' => 'users#assign_member', :as => :assign_member
   get '/reveal' => 'visitors#reveal', :as => :reveal
+  get '/workflow' => 'tasks#workflow', :as => :workflow
+  get '/data.json' => 'tasks#workflow_data', :as => :workflow_data
 end

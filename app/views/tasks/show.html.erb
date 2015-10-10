@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
+ <h1> <%= @task.title %></h1>
 
 <p>
   <strong>Category:</strong>
   <%= @task.category %>
 </p>
+<p>
+  <strong>Circle that initiated the task:</strong>
+  <%= @task.circle.name %>
+</p>
+  
+  From : <%= @task.from %><br>
+  To : <%= @task.to %>
 
 <p>
   <strong>Description:</strong>
-  <%= @task.description %>
+  <%= raw @task.description %>
 </p>
 
-<p>
-  <strong>Circle:</strong>
-  <%= @task.circle %>
-</p>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to 'Edit', edit_task_path(@task) if current_user.member.circles.include? @task.circle %>
+<%# link_to 'Back', tasks_path %>

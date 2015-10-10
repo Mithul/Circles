@@ -12,14 +12,48 @@ class TasksController < ApplicationController
     @tasks = (reports + tasks + roles + circles).sort{|a,b| a.created_at <=> b.created_at }.reverse
   end
 
+  def workflow
+  end
+
+  def workflow_data
+    json = []
+    Task.where(:task => nil).each do |t|
+      if t.from == nil
+        next
+      end
+      event = {name: t.title,
+            values: [],
+            id: t.id}
+      t.tasks.each do |sub_task|
+        value = {
+              from: "/Date(#{sub_task.from.to_time.to_i*1000})/",
+              to: "/Date(#{sub_task.to.to_time.to_i*1000})/",
+              label: sub_task.title,
+              url: task_path(sub_task)
+            }
+        value[:customClass] =  sub_task.circle.name.camelize if sub_task.circle
+            event[:values] << value
+      end
+      json << event
+    end
+    # json << event
+    render :json => json
+  end
+
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+     if request.xhr?
+      render :layout => false
+    end
   end
 
   # GET /tasks/new
   def new
     @task = Task.new
+    if request.xhr?
+      render :layout => false
+    end
   end
 
   # GET /tasks/1/edit
@@ -74,6 +108,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :category, :description, :circle_id)
+      params.require(:task).permit(:title, :category, :description, :circle_id, :from, :to, :task_id)
     end
 end
