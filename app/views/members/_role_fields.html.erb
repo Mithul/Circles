@@ -2,6 +2,7 @@
   <%= f.error_notification %>
   <%= f.input :name %>
   <%= f.input :description %>
+  <%= f.association :circle %>
   <%# f.input :done, :as => :boolean %>
   <%= link_to_remove_association "Remove role", f %>
  </div>

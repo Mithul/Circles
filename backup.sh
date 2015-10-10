@@ -4,10 +4,11 @@
 #Author = Hafiz Haider
 #Version 1.0
 #START
-TIME=`date +%b-%d-%y`            # This Command will add date in Backup File Name.
-FILENAME=backup-$TIME.tar.gz    # Here i define Backup file name format.
-SRCDIR=db                    # Location of Important Data Directory (Source of backup).
-DESDIR=dbbackup            # Destination of backup file.
+TIME=`date +%b-%d-%y_%H:%M`            
+FILENAME=backup-$TIME.tar.gz    
+SRCDIR='/home/mithul/Circles/db'                  
+DESDIR='/home/mithul/Circles/dbbackup'
+echo 'tar -cpzf '$DESDIR'/'$FILENAME' '$SRCDIR
 tar -cpzf $DESDIR/$FILENAME $SRCDIR
 
 #END

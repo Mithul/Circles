@@ -12,15 +12,15 @@ class Role < ActiveRecord::Base
   end
 
   def circle_name
-  	self.circle.name
+  	self.circle.name if self.circle
   end
 
   def task_title
-    entity = self.circle.name if self.members.count == 0
-    entity = self.members.first.name if self.members.count == 1
-    entity = self.members.pluck(:name).join(', ') if  self.members.count > 1
+    entity = self.circle.name if self.circle and self.members.count == 0
+    entity = self.members.first.name if self.members and self.members.count == 1
+    entity = self.members.pluck(:name).join(', ') if self.members and self.members.count > 1
 
-    'Role "'+self.name+'" assigned to ' + entity
+    'Role "'+self.name+'" assigned to ' + entity if entity
   end
 
   def task_date

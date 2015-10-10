@@ -19,6 +19,7 @@
 //= require bootstrap-datetimepicker
 //= require pickers
 //= require ckeditor/init
+//= require jquery-tablesorter
 //= require_self
 //= require_tree ./required
 

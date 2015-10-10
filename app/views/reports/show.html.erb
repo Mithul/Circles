@@ -46,8 +46,8 @@
 </p>
 
 <p>
-  <strong>Author:</strong>
-  <%= @report.author %>
+  <strong>Author(s):</strong>
+  <%= (@report.versions.pluck("whodunnit").uniq.map{|id| User.find(id).name}).compact.join(", ")%>
 </p>
 
 <p>

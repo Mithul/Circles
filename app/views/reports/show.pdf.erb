@@ -32,12 +32,17 @@
 
 
     <div class="col-md-12">
-      <strong>Participants:</strong>
-      <%= @report.participants %>
-    </div>  
-    <div class="col-md-12">
       <strong>Other buckets:</strong>
       <%= @report.othbucket %>
+    </div>  
+    <div class="col-md-12">
+      <strong>Author:</strong>
+  	<%= (@report.versions.pluck("whodunnit").uniq.map{|id| User.find(id).name}).compact.join(", ")%>
+      <%# @report.user.name if @report.user%>
+    </div>  
+    <div class="col-md-12">
+      <strong>Participants:</strong>
+      <%= @report.participants %>
     </div>  
   </div>
 
@@ -57,8 +62,9 @@
 
   <!-- <div class="row">
     <div class="col-md-12">
-      <strong>Author:</strong>
-      <%= @report.author %>
+      <strong>Author(s):</strong>
+  	<%= (@report.versions.pluck("whodunnit").uniq.map{|id| User.find(id).name}).compact.join(", ")%>
+      <%# @report.author %>
     </div>  
   </div> -->
 

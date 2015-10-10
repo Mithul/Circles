@@ -31,13 +31,17 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
+    @report.user = current_user
     @report.save
     redirect_to report_path(:format => :pdf, :id => @report.id)
   end
 
   def update
     @report.update(report_params)
-    respond_with(@report)
+    @report.user = current_user
+    @report.save
+    redirect_to report_path(:format => :pdf, :id => @report.id)
+    # respond_with(@report)
   end
 
   def destroy
@@ -51,6 +55,6 @@ class ReportsController < ApplicationController
     end
 
     def report_params
-      params.require(:report).permit(:title, :date, :time, :duration, :venue, :initiator, :bucket, :participants, :description, :conclusion, :author, :inter, :othbucket)
+      params.require(:report).permit(:title, :date, :time, :duration, :venue, :initiator, :bucket, :participants, :description, :conclusion, :author, :inter, :othbucket, :category)
     end
 end

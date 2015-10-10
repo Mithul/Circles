@@ -17,6 +17,7 @@ hr.style-two {
 		<h3>History</h3>
 			<%= 'No history yet' if !@report.versions or @report.versions.count==0 %>
 			<% @report.versions.each do |version| %>
+				<% if version.reify %>
 				<div class="row well">
 					<div class="col-sm-8">
 						<%= raw version.reify.description %>
@@ -25,6 +26,7 @@ hr.style-two {
 						<%= raw version.reify.created_at %>
 					</div>
 				</div>
+				<% end %>
 				<!-- <div class="row">
 					<hr class="style-two">
 				</div> -->
