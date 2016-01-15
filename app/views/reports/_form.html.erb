@@ -1,6 +1,86 @@
 <%= simple_form_for(@report) do |f| %>
   <%= f.error_notification %>
 
+<script type="text/javascript">
+var elem;
+$(document).ready(function(){
+  $('.auth-form').on('click','a.lister',function(){
+    // alert('done');
+    elem=$(this);
+    var href = '/list-uploads';
+    ajax(elem,href);
+    return false;
+  });
+
+  function ajax(elem,href){
+    $.ajax({
+      url: href,
+    }).done(function(data) {
+      modal = $('#roles-modal');
+      modal.modal('show');
+      var rList = $('#roles-modal ul.roles');
+      var cList = $('#roles-modal ul.circles');
+      cList.html('');
+      rList.html('');
+      modal.find('.modal-title').html("Known Uploads");
+      modal.find('.main-circle').html('&nbsp;&nbsp;');
+      modal.find('a.roles-full').attr("href", href);
+      var place=$(elem.parent().parent().parent().find('input.hidden')[0]).attr('id').split('_')[3];
+      console.log(place);
+      $.each(data, function(i)
+      {
+        // alert(data);
+        var li = $('<li/>')
+              .addClass('role')
+              .appendTo(rList);
+          var name = $('<h3/>')
+            .addClass('role-title')
+              .text(data[i]['name']+'('+data[i]['user']+')')
+              .appendTo(li);
+          var description = $('<a/>')
+              .text("Open File")
+              .attr('href',data[i]['url'])
+              .attr('target',"_blank")
+              .appendTo(li);
+          var description = $('<a/>')
+              .attr('href',"#")
+              .attr('class',"setter")
+              .attr('upload_id',data[i]['id'])
+              .attr('form_id',place)
+              .text("   Choose this upload")
+              .appendTo(li);
+          var description = $('<a/>')
+              .text("Delete File")
+              .attr('class',"deleter")
+              .attr('href','#')
+              .attr('upload_id',data[i]['id'])
+              .appendTo(li);
+      });
+    });
+  }
+ 
+  $('#roles-modal').on('click','a.setter',function(){
+    var place=$(this).attr('form_id');
+    var ip=$(".auth-form input[name='report[uploads_attributes]["+place+"][name]']");
+    ip.prop("readonly", true);
+    ip.val($(this).attr('upload_id'));
+    var p=$(".auth-form input[name='report[uploads_attributes]["+place+"][_exist]']");
+    p.val(true); 
+  });
+  $('#roles-modal').on('click','a.deleter',function(){
+    var place=$(this).attr('upload_id');
+    var href='/uploads/'+place;
+    $.ajax({
+      url: href,
+      method: 'DELETE'
+    }).done(function(data) {
+      ajax(elem,'/list-uploads');
+    }).fail(function(data){
+      alert('Not allowed to delete');
+    });
+  });
+});
+</script>
   <div class="auth-form">
     <div class="row">
       <div class="col-xs-8">
@@ -9,7 +89,18 @@
       <div class="col-xs-4">
         <%= f.input :category, required: true %>
       </div>
-
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <label>Attachments</label><br>
+        <small>Do not give just numbers as names</small>
+        <%= f.simple_fields_for :uploads do |upload| %>
+          <%= render 'upload_fields', :f => upload %>
+        <% end %>
+        <div class="links">
+          <%= link_to_add_association 'Add Upload', f, :uploads, force_non_association_create: true %>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-sm-4">

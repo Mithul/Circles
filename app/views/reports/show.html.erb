@@ -59,6 +59,11 @@
   <strong>Othbucket:</strong>
   <%= @report.othbucket %>
 </p>
-
+uploads:<br>
+<% @report.uploads.each do |upload| %>
+  <%= upload.name %>
+  <%= link_to upload.name,upload.file.url %><br>
+<% end %>
+<br>
 <%= link_to 'Edit', edit_report_path(@report) %> |
 <%= link_to 'Back', reports_path %>

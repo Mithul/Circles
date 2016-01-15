@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   after_initialize :set_default_role, :if => :new_record?
   has_many :reports
   has_one :member
+  has_many :uploads
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
 

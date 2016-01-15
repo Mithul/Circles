@@ -2,6 +2,9 @@ class Report < ActiveRecord::Base
 	has_paper_trail
 	belongs_to :user
   has_many :comments, as: :post
+  has_and_belongs_to_many :uploads, as: :uploadable
+  accepts_nested_attributes_for :uploads, :allow_destroy => false
+
   
 	extend FriendlyId
   	friendly_id :title,  use: [:slugged, :finders]

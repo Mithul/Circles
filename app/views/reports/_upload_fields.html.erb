@@ -1,0 +1,21 @@
+<div class="row nested-fields">
+  	<%= f.error_notification %>
+	<div class="col-md-4">
+	  <%= f.input :name %>
+	</div>
+	<div class="col-md-4">
+	  <%= f.input :file %>
+	  <%= f.input :user_id,  as: :hidden, input_html: {value: current_user.id} %>
+	  <%= f.input :_exist,  as: :hidden, input_html: {value: false} %>
+	</div>
+	<%# f.input :description %>
+	<%# f.input :done, :as => :boolean %>
+	<div class="col-md-4">
+		<div class="btn-group"> 
+			<br>
+			<%= link_to_remove_association "Remove Upload", f , class: 'btn btn-danger btn-xs'%>
+			<button class="btn btn-xs disabled">OR</button>
+			<a class="btn btn-info btn-xs lister" href="#">Choose Existing</a>
+		</div>
+	</div>
+</div>

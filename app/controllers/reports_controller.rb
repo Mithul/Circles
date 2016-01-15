@@ -13,7 +13,8 @@ class ReportsController < ApplicationController
       format.html
       format.pdf do
         render pdf: "CTF-Report-#{@report.title}" , :wkhtmltopdf => '/usr/bin/wkhtmltopdf',   # Excluding ".pdf" extension.
-        :page_size => 'A4'
+        :page_size => 'A4',
+        disable_external_links: false
       end
     end
   end
@@ -38,8 +39,20 @@ class ReportsController < ApplicationController
 
   def update
     @report.update(report_params)
+    upload_params=params[:report][:uploads_attributes]
+    if !upload_params.empty?
+      upload_params.each_with_index do |upload,i|
+        @report.uploads.delete(upload[1][:id]) if upload[1][:_destroy]=="1"
+        @report.uploads << Upload.find(upload[1][:name]) if upload[1][:_exist]=="true"
+      end
+    end
     @report.user = current_user
     @report.save
+    if !upload_params.empty?
+      upload_params.each_with_index do |upload,i|
+         Upload.find_by_name(upload[1][:name]).destroy if upload[1][:_exist]=="true"
+      end
+    end
     redirect_to report_path(:format => :pdf, :id => @report.id)
     # respond_with(@report)
   end
@@ -55,6 +68,6 @@ class ReportsController < ApplicationController
     end
 
     def report_params
-      params.require(:report).permit(:title, :date, :time, :duration, :venue, :initiator, :bucket, :participants, :description, :conclusion, :author, :inter, :othbucket, :category)
+      params.require(:report).permit(:title, :date, :time, :duration, :venue, :initiator, :bucket, :participants, :description, :conclusion, :author, :inter, :othbucket, :category, uploads_attributes: [:name, :id, :file, :user_id,:_destroy])
     end
 end
