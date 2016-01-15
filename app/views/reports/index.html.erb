@@ -1,7 +1,18 @@
+<style>
+.tablesorter-headerAsc:after{
+content:'\25B2';
+}
+.tablesorter-headerDesc:after{
+content:'\25BC';
+}
+.tablesorter-headerUnSorted:after{
+content:'\25BC \25B2';
+}
+</style>
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Members</h1>
-
+<h1>Listing Reports</h1>
+<p>Click on the column header to sort according to that column</p>
 <table class="table table-responsive table-hover tablesorter">
   <thead>
     <tr>
