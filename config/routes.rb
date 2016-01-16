@@ -41,4 +41,7 @@ Rails.application.routes.draw do
   get '/reveal' => 'visitors#reveal', :as => :reveal
   get '/workflow' => 'tasks#workflow', :as => :workflow
   get '/data.json' => 'tasks#workflow_data', :as => :workflow_data
+
+  get '/reports/:id/history/:ver.pdf' => 'reports#history', as: :report_history
+
 end

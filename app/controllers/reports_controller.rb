@@ -8,6 +8,22 @@ class ReportsController < ApplicationController
     respond_with(@reports)
   end
 
+  def history
+    @report = Report.find(params[:id]).versions.find(params[:ver]).reify
+    respond_to do |format|
+      format.html do 
+        render 'show'
+      end
+      format.pdf do
+        render pdf: "CTF-Report-#{@report.title}" , :wkhtmltopdf => '/usr/bin/wkhtmltopdf',   # Excluding ".pdf" extension.
+        :page_size => 'A4',
+        disable_external_links: false,
+        template: 'show'
+      end
+    end
+    # render 'show'
+  end
+
   def show
     respond_to do |format|
       format.html
@@ -28,6 +44,7 @@ class ReportsController < ApplicationController
 
   def edit
     @buckets = Circle.where(:category => 'main').pluck(:name)
+    @diffy = Diffy::Diff
   end
 
   def create

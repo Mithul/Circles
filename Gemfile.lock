@@ -96,6 +96,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    diffy (3.1.0)
     erubis (2.7.0)
     eventmachine (1.0.8)
     execjs (2.6.0)
@@ -281,6 +282,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   datetimepicker-rails!
   devise
+  diffy
   figaro (>= 1.0.0.rc1)
   font-awesome-sass (~> 4.3.0)
   friendly_id (~> 5.1.0)
@@ -310,3 +312,6 @@ DEPENDENCIES
   upmin-admin
   web-console (~> 2.0)
   wicked_pdf
+
+BUNDLED WITH
+   1.10.6

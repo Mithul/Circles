@@ -61,7 +61,6 @@
 </p>
 uploads:<br>
 <% @report.uploads.each do |upload| %>
-  <%= upload.name %>
   <%= link_to upload.name,upload.file.url %><br>
 <% end %>
 <br>

@@ -8,7 +8,12 @@ hr.style-two {
 </style>-->
 
 <h1>Editing report</h1>
-
+<style>
+	<%= Diffy::CSS %>
+	.diff .diff-block-info{
+		color:white;
+	}
+</style>
 <div class="row">
 	<div class="col-sm-8">
 		<%= render 'form' %>
@@ -18,12 +23,24 @@ hr.style-two {
 			<%= 'No history yet' if !@report.versions or @report.versions.count==0 %>
 			<% @report.versions.each do |version| %>
 				<% if version.reify %>
-				<div class="row well">
-					<div class="col-sm-8">
-						<%= raw version.reify.description %>
+				<div class="well">
+					<div class="row">
+						<div class="col-sm-8">
+							<b>Edited by: </b><%= raw version.reify.user.member.name %>
+						</div>
+						<div class="col-sm-4">
+								<%= raw version.reify.created_at %>
+						</div>
 					</div>
-					<div class="col-sm-4">
-						<%= raw version.reify.created_at %>
+					<div class="row">
+						<div class="col-sm-8">
+							<%= raw(@diffy.new(version.reify.description, version.next.reify.description, :include_diff_info => true, :context => 1).to_s(:html_simple)) if version.next%>
+							<%= raw(@diffy.new(version.reify.description, @report.description, :include_diff_info => true, :context => 1).to_s(:html_simple)) if !version.next%>
+							<%# raw(Diffy::SplitDiff.new(version.reify.description, version.next.reify.description, :format => :html)) if version.next%>
+						</div>
+						<div class="col-sm-4">
+							<%= link_to "Check this version",report_history_path(id: @report.id ,:ver=> version) %>
+						</div>
 					</div>
 				</div>
 				<% end %>
