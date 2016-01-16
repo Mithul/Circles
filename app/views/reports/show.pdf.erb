@@ -58,7 +58,11 @@
       <h2>Uploads:</h2>
       <ol>
       <% @report.uploads.each do |upload| %>
-        <li><%= link_to upload.name,URI.join(request.url, upload.file.url).to_s %><br> <b> Uploaded By: <%= upload.user.member.name %></b>
+        <li><%= link_to upload.name,URI.join(request.url, upload.file.url).to_s %><br> <b> Uploaded By: <%= upload.user.member.name %>
+        <% if !upload.file_content_type["image"].nil? %>
+          <%= wicked_pdf_image_tag_for_public(upload.file.url) %>
+        <% end %>
+        </b>
       <% end %>
       </ol>
     </div>  
