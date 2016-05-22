@@ -1,4 +1,6 @@
 <%= form_for :members, url: parser_path do |f| %>
-  <%= f.file_field :file %>
+	<%= f.file_field :file %>
+	<%= f.label :junior %> 
+<%= f.check_box :junior %><br>
   <%= f.submit "Create" %>
 <% end %>

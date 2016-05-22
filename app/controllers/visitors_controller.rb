@@ -85,6 +85,8 @@ class VisitorsController < ApplicationController
 
 	def parser
 		require 'csv'
+		junior = false
+		junior = true if params[:members][:junior]
 		csv_text = File.read(params[:members][:file].tempfile)
 		csv = CSV.parse(csv_text, :headers => true)
 		members = []
@@ -95,22 +97,44 @@ class VisitorsController < ApplicationController
 			ctf.save
 		end
 		csv.each do |row|
-			circle = Circle.find_by_name(row["TEAM"])
+			puts row['TEAM']
+			circles = row['TEAM']
+			circles.split(',').each do |cname|
+			c=cname.split.map(&:capitalize).join(' ')
+			circle = Circle.find_by_name(c)
 			if !circle
 				circle = Circle.new
-				circle.name = row["TEAM"]
+				circle.name = c
 			end
 			circle.save
-			ctf.circles << circle
+			if !circle.circle
+				ctf.circles << circle
+			end
 			member = Member.find_by_name(row["NAME"])
 			if !member
 				member = Member.new
 				member.name = row["NAME"]
 			end
+			if junior
+				member.category = :junior
+				roles = row['SUBTEAM'].split(',')
+				roles.each do |r|
+					rname = row['Position']+' for '+r
+					role=member.roles.find_by_name_and_description(row['Position'],rname)
+					if !role
+						role=Role.new
+						role.name=row['Position']
+						role.description=rname
+						member.roles << role
+					end
+					role.save
+				end
+			end
 			if !member.circles.include? circle
 				member.circles << circle
 			end
 			member.save
+			end
 		  # members << member
 		end
 		ctf.save

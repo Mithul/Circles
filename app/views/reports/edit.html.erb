@@ -26,7 +26,7 @@ hr.style-two {
 				<div class="well">
 					<div class="row">
 						<div class="col-sm-8">
-							<b>Edited by: </b><%= raw version.reify.user.member.name %>
+							<b>Edited by: </b><%= raw version.reify.user.member.name if version.reify.user %>
 						</div>
 						<div class="col-sm-4">
 								<%= raw version.reify.created_at %>
@@ -39,7 +39,7 @@ hr.style-two {
 							<%# raw(Diffy::SplitDiff.new(version.reify.description, version.next.reify.description, :format => :html)) if version.next%>
 						</div>
 						<div class="col-sm-4">
-							<%= link_to "Check this version",report_history_path(id: @report.id ,:ver=> version) %>
+							<%= link_to "Check this version",report_history_path(id: @report.id ,:ver=> version, :format => :pdf) %>
 						</div>
 					</div>
 				</div>

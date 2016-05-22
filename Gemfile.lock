@@ -312,6 +312,3 @@ DEPENDENCIES
   upmin-admin
   web-console (~> 2.0)
   wicked_pdf
-
-BUNDLED WITH
-   1.10.6

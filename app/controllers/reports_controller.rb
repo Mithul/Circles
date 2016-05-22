@@ -18,7 +18,7 @@ class ReportsController < ApplicationController
         render pdf: "CTF-Report-#{@report.title}" , :wkhtmltopdf => '/usr/bin/wkhtmltopdf',   # Excluding ".pdf" extension.
         :page_size => 'A4',
         disable_external_links: false,
-        template: 'show'
+        template: 'reports/show'
       end
     end
     # render 'show'
